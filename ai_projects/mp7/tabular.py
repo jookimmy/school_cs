@@ -25,7 +25,7 @@ class TabQPolicy(QPolicy):
         super().__init__(len(buckets), actionsize, lr, gamma)
         self.env = env
         self.buckets = buckets
-        self.model = np.zeros(self.buckets + (actionsize,)) if model == None else model
+        self.model = np.zeros(self.buckets + (actionsize,)) if model is None else model
 
     def discretize(self, obs):
         """
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     statesize = env.observation_space.shape[0]
     actionsize = env.action_space.n
-    policy = TabQPolicy(env, buckets=(2, 2), actionsize=actionsize, lr=args.lr, gamma=args.gamma)
+    policy = TabQPolicy(env, buckets=(30, 30), actionsize=actionsize, lr=.15, gamma=args.gamma)
 
     utils.qlearn(env, policy, args)
 
